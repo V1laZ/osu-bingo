@@ -1,0 +1,35 @@
+.error-page {
+    height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    flex-direction: column;
+}
+
+.error-page-text {
+    font-size: 32px;
+    color: rgba(255, 0, 0, 0.5);
+}
+
+.error-page-btn {
+    border: 2px solid rgba(255, 0, 43, 0.788);
+    border-radius: 0.3rem;
+    padding: 8px;
+
+    font-size: 26px;
+
+    background-color: rgba(255, 0, 43, 0.616);
+
+    &:hover {
+        cursor: pointer;
+        background-color: rgba(255, 0, 43, 0.774);
+    }
+}
+
+.error-msg {
+    color: red;
+    margin: 0;
+    padding: 0;
+}

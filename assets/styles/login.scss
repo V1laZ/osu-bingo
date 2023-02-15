@@ -1,0 +1,43 @@
+.login-page {
+    height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    border: 2px solid rgba(255, 130, 151, 0.705);
+    border-radius: 0.75rem;
+    padding: 1rem;
+}
+
+.login-btn {
+    width: 100%;
+    padding: 6px;
+
+    font-size: 28px;
+
+    border: none;
+    border-radius: 0.3rem;
+
+    background-color: rgba(255, 130, 151, 0.904);
+    color: white;
+
+    transition: 100ms ease all;
+
+    &:hover {
+        cursor: pointer;
+        box-shadow: 0px 0px 4px 1px rgb(255, 173, 186);
+    }
+}
+
+.welcome-text {
+    font-size: 32px;
+    font-weight: 600;
+}
