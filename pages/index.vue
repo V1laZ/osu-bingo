@@ -532,24 +532,35 @@ function animateCreateLobby() {
 
 async function joinLobby() {
     if (!lobbyInput.value) {
-        joinLobbyError.value = {error: true, msg: "This lobby doesn't exist"}
+        joinLobbyError.value = {error: true, msg: "Enter a valid lobby ID"}
         return false
     }
 
     if (!(/^[0-9]+$/.exec(lobbyInput.value))) {
-        joinLobbyError.value = {error: true, msg: "Enter valid lobby ID"}
+        joinLobbyError.value = {error: true, msg: "Enter a valid lobby ID"}
         return false
     }
 
-    const { data: fetchLobby } = await supabase.from('lobbies').select('players').eq('lobby_id', lobbyInput.value)
+    const { data: fetchLobby } = await supabase.from('lobbies').select('players, started').eq('lobby_id', lobbyInput.value)
+
     if (!fetchLobby.length) {
         joinLobbyError.value = {error: true, msg: "This lobby doesn't exist"}
         return false
     }
 
-    if (fetchLobby[0].players.includes(user.value)) {
-        joinLobbyError.value = {error: true, msg: "User already in the lobby"}
+    if (!fetchLobby.started) {
+        joinLobbyError.value = {error: true, msg: "Lobby has already started"}
         return false
+    }
+
+    for (let i = 0; i < fetchLobby[0].players.length; i++) {
+        const player = fetchLobby[0].players[i].player
+
+        if (player == user.value) {
+            return navigateTo(`/lobby/${lobbyInput.value}`)
+            // joinLobbyError.value = {error: true, msg: "User already in the lobby"}
+        }
+        
     }
 
     if (fetchLobby[0].players.length >= 6) {

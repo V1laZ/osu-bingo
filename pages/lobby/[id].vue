@@ -2,12 +2,15 @@
     <div class="lobby-page">
         <Transition name="fade">
             <div v-if="lobby_status.ended" class="win-overlay">
-                <p class="team-won-text" :class="
+                <p v-if="lobby_status.team_won.length > 0" class="team-won-text" :class="
                     {
                         'team-red-text': lobby_status.team_won == 'red',
                         'team-blue-text': lobby_status.team_won == 'blue',
                         'team-green-text': lobby_status.team_won == 'green',
                     }">{{ lobby_status.team_won }} TEAM WON! 
+                </p>
+                <p v-else class="team-won-text">
+                    LOBBY ENDED!
                 </p>
             </div>
         </Transition>
@@ -89,21 +92,28 @@ if (!user.value) {
     navigateTo('/')
 }
 
-const { data: fetchLobby } = await supabase.from('lobbies').select('players, mappool, started').eq('lobby_id', lobby_id)
+const { data: fetchLobby } = await supabase.from('lobbies').select('players, mappool, started, ended').eq('lobby_id', lobby_id)
 players.value = fetchLobby[0].players
 lobby_status.value.started = fetchLobby[0].started
+lobby_status.value.ended = fetchLobby[0].ended
 mappool.value = fetchLobby[0].mappool
 
 supabase.channel('public:lobbies').on('postgres_changes', {event: 'UPDATE', schema: 'public', table: 'lobbies', filter: `lobby_id=eq.${lobby_id}`}, payload => {
     mappool.value = payload.new.mappool
     players.value = payload.new.players
     lobby_status.value.started = payload.new.started
-    checkForWin(mappool.value)
+    if (checkForWin(mappool.value)) {
+        endLobby()
+    }
 }).subscribe()
 
 
 function leaveLobby() {
     navigateTo('/')
+}
+
+async function endLobby() {
+    await supabase.from('lobbies').update({ ended: true}).eq('lobby_id', lobby_id)
 }
 
 async function startLobby() {
