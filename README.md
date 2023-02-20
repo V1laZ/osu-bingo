@@ -12,9 +12,9 @@ Table of Contents
     - [Joining Lobby](#joining-lobby)
     - [Creating Lobby](#creating-lobby)
   - [The Game](#the-game)
-    - [Selecting teams](#selecting-teams)
-    - [Start](#start)
-    - [Playing the game](#playing-the-game)
+    - [Team Selection](#team-selection)
+    - [Starting the Game](#starting-the-game)
+    - [Gameplay](#gameplay)
     - [Win condition](#win-condition)
 
 
@@ -40,19 +40,20 @@ In order to create lobby you have to first **create a mappool** which will be th
 -   If you did everyting correctly you will be redirected to [Lobby Page](#the-game)
 
 ## The Game
-### Selecting teams
-Players are able to **change** their own team by clicking the **colored line** next to their name. Keep in mind you won't be able to change teams after the game has started.
-### Start
-Master of the lobby will see a **Start** button which will then reveal the mappool to everyone else and also **lock** the currently selected **teams**.
-### Playing the game
+### Team Selection
+Players can **switch** teams by clicking on the **colored line** next to their name. Please note that team changes are not allowed once the game has started.
+
+### Starting the Game
+The **lobby master** will have access to the **"Start"** button, which reveals the mappool to all players and **locks** the selected teams in place.
+### Gameplay
 -   **Click** on one of the **tile**
--   **New tab** will open with selected **map** and **difficulty**
--   **Download** the map and play it (you have to **pass**)
--   Click on the **Submit Play** button below the playfield
--   If your submitted **score** is higher than the current score behind the tile your **team** will take the tile
--   **Hover** over other team's tiles to see the submitted scores by other players
+-   The **chosen map** and difficulty will open in a **new tab**
+-   **Download** and complete the map (you must pass).
+-   Click the **"Submit Play"** button located below the playfield.
+-   If your submitted score **surpasses** the current score displayed on the tile, your team will **claim** the tile.
+-   **Hover** over the other team's tiles to view the **scores** submitted by **their players**.
 -   **Enjoy!**
 ### Win condition
-To **win** the the game your team has to hold **one full row or column** of tiles.
+To achieve **victory**, your team must **control** an entire **row** or **column** of tiles.
 
-Good Luck!
+_Good Luck!_
