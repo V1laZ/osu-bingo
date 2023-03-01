@@ -138,6 +138,14 @@ async function submitPlay() {
     }
 
     const { data: fetchPlay, error } = await useFetch(`${config.APP_PATH}/api/recent/${user_id.value}`, {headers: headers})
+    if (!fetchPlay.value[0]) {
+        submitting.value = false
+        submitError.value = {
+            error: true,
+            msg: `No recently submitted maps on your profile`
+        }
+        return
+    }
     const beatmap_id = fetchPlay.value[0].beatmap.id
     const score = fetchPlay.value[0].score
     const beatmap_name = `${fetchPlay.value[0].beatmapset.artist} - ${fetchPlay.value[0].beatmapset.title} [${fetchPlay.value[0].beatmap.version}]`
